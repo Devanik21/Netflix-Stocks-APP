@@ -3,10 +3,10 @@ import pandas as pd
 import joblib
 
 # Load the dataset
-df = pd.read_csv("C:\\imp\\ml JUPYTER\\MY ML PROJECTS(BOOK)\\3.Deep learning\\ANN\\Recreation\\STOCK PREDICTION\\Netflix stock pred APP\\NFLX.csv")
+df = pd.read_csv("NFLX.csv")
 
 # Load the trained model (adjust the path to where your model is saved)
-model = joblib.load("C:\\imp\\ml JUPYTER\\MY ML PROJECTS(BOOK)\\3.Deep learning\\ANN\\Recreation\\STOCK PREDICTION\\Netflix stock pred APP\\Netflix Stocks ET.pkl")  # Replace with your actual model path
+model = joblib.load("Netflix Stocks ET.pkl")  # Replace with your actual model path
 
 # Title of the web app
 st.title("Netflix Stock Price Prediction Web App")
