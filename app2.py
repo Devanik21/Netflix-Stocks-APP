@@ -17,14 +17,14 @@ st.sidebar.header("Input Features")
 def user_input_features():
     # Create sliders for each numerical feature in the dataset
     features = {}
-    features['Open'] = st.sidebar.slider('Open', 100, 2000, float(df['Open'].mean()))
-    features['High'] = st.sidebar.slider('High', 100, 2000, float(df['High'].mean()))
-    features['Low'] = st.sidebar.slider('Low', 100, 2000, float(df['Low'].mean()))
+    features['Open'] = st.sidebar.slider('Open', 100.0, 2000.0, float(df['Open'].mean()))
+    features['High'] = st.sidebar.slider('High', 100.0, 2000.0, float(df['High'].mean()))
+    features['Low'] = st.sidebar.slider('Low', 100.0, 2000.0, float(df['Low'].mean()))
     
     # Add Adj Close slider between Low and Volume
-    features['Adj Close'] = st.sidebar.slider('Adj Close', 100, 2000, float(df['Adj Close'].mean()))
+    features['Adj Close'] = st.sidebar.slider('Adj Close', 100.0, 2000.0, float(df['Adj Close'].mean()))
     
-    features['Volume'] = st.sidebar.slider('Volume', 100, 80000000, float(df['Volume'].mean()))
+    features['Volume'] = st.sidebar.slider('Volume', 100.0, 80000000.0, float(df['Volume'].mean()))
 
     
 
