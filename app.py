@@ -3,10 +3,10 @@ import pandas as pd
 import joblib
 
 # Load the dataset
-df = pd.read_csv("NFLX.csv")
+df = pd.read_csv("C:\\imp\\ml JUPYTER\\MY ML PROJECTS(BOOK)\\3.Deep learning\\ANN\\Recreation\\STOCK PREDICTION\\Netflix stock pred APP\\NFLX.csv")
 
 # Load the trained model (adjust the path to where your model is saved)
-model = joblib.load("Netflix Stocks ET.pkl")  # Replace with your actual model path
+model = joblib.load("C:\\imp\\ml JUPYTER\\MY ML PROJECTS(BOOK)\\3.Deep learning\\ANN\\Recreation\\STOCK PREDICTION\\Netflix stock pred APP\\Netflix Stocks ET.pkl")  # Replace with your actual model path
 
 # Title of the web app
 st.title("Netflix Stock Price Prediction Web App")
@@ -17,14 +17,14 @@ st.sidebar.header("Input Features")
 def user_input_features():
     # Create sliders for each numerical feature in the dataset
     features = {}
-    features['Open'] = st.sidebar.slider('Open', float(df['Open'].min()), float(df['Open'].max()), float(df['Open'].mean()))
-    features['High'] = st.sidebar.slider('High', float(df['High'].min()), float(df['High'].max()), float(df['High'].mean()))
-    features['Low'] = st.sidebar.slider('Low', float(df['Low'].min()), float(df['Low'].max()), float(df['Low'].mean()))
+    features['Open'] = st.sidebar.slider('Open', 100.0, 10000.0, float(df['Open'].mean()))
+    features['High'] = st.sidebar.slider('High', 100.0, 10000.0, float(df['High'].mean()))
+    features['Low'] = st.sidebar.slider('Low', 100.0, 10000.0, float(df['Low'].mean()))
     
     # Add Adj Close slider between Low and Volume
-    features['Adj Close'] = st.sidebar.slider('Adj Close', float(df['Adj Close'].min()), float(df['Adj Close'].max()), float(df['Adj Close'].mean()))
+    features['Adj Close'] = st.sidebar.slider('Adj Close', 100.0, 10000.0, float(df['Adj Close'].mean()))
     
-    features['Volume'] = st.sidebar.slider('Volume', float(df['Volume'].min()), float(df['Volume'].max()), float(df['Volume'].mean()))
+    features['Volume'] = st.sidebar.slider('Volume', 100.0, 500000000.0, float(df['Volume'].mean()))
 
     
 
