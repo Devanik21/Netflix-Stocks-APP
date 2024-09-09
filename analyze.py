@@ -371,27 +371,27 @@ def analyze_page():
     # Multi-select widget for column selection
     selected_columns = st.multiselect("Select columns to visualize", options=numeric_columns, default=numeric_columns[:2])
 
-    if selected_columns:
-        plot_pairwise(data, selected_columns)
-        plot_histograms(data, selected_columns)
-        plot_boxplots(data, selected_columns)
-        plot_violin_plots(data, selected_columns)
-        plot_correlation_heatmap(data)
-        plot_pair_plots(data, selected_columns)
-        plot_line_plots(data, selected_columns)
-        plot_histograms_kde(data, selected_columns)
-        plot_kde_plots(data, selected_columns)
-        plot_scatter_matrix(data, selected_columns)
-        plot_bar_plots(data, selected_columns)
-        plot_heatmaps(data, selected_columns)
-        plot_hexbin_plots(data, selected_columns)
-        plot_regression_pairs(data, selected_columns)
-        plot_swarm_plots(data, selected_columns)
-        plot_ridge_plot(data, selected_columns,category)
-        plot_pair_grid(data, selected_columns)
-        plot_lag_plot(data, selected_columns)
-        plot_andrews_curves(data, selected_columns)
-        
-        
-    else:
-        st.info("Select columns to generate visualizations.")
+if selected_columns:
+    plot_pairwise(data, selected_columns)
+    plot_histograms(data, selected_columns)
+    plot_boxplots(data, selected_columns)
+    plot_violin_plots(data, selected_columns)
+    plot_correlation_heatmap(data)
+    plot_pair_plots(data, selected_columns)
+    plot_line_plots(data, selected_columns)
+    plot_histograms_kde(data, selected_columns)
+    plot_kde_plots(data, selected_columns)
+    plot_scatter_matrix(data, selected_columns)
+    plot_bar_plots(data, selected_columns)
+    plot_heatmaps(data, selected_columns)
+    plot_hexbin_plots(data, selected_columns)
+    plot_regression_pairs(data, selected_columns)
+    plot_swarm_plots(data, selected_columns)
+    plot_ridge_plot(data, selected_columns, category)
+    plot_pair_grid(data, selected_columns)
+    # Assuming 'lag_column' is defined or selected elsewhere in the app
+    plot_lag_plot(data, lag_column, lag=1)  # Example lag value of 1
+    plot_andrews_curves(data, category)
+else:
+    st.info("Select columns to generate visualizations.")
+
