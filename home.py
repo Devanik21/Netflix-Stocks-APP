@@ -7,7 +7,7 @@ def home_page():
     # Welcome message with updated styling
     st.markdown("""
     <div style="text-align: center;">
-        <p style="font-size: 1.2em; color: #555;">Forecast Netflix stock prices using historical data. Explore the app through the sidebar to find various features and insights.</p>
+        <p style="font-size: 1.2em; color: #8c8888;">Forecast Netflix stock prices using historical data.</p>
     </div>
     """, unsafe_allow_html=True)
     
