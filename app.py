@@ -10,8 +10,10 @@ from PIL import Image
 
 # Sidebar for navigation
 st.sidebar.title("Navigation")
+
+# Use st.selectbox to create a scrollable dropdown menu for navigation
 pages = ["Home", "Predict", "Analyze", "Visualize", "Insights", "Feedback", "About"]
-selection = st.sidebar.radio("Go to", pages)
+selection = st.sidebar.selectbox("Go to", pages)  # This makes the sidebar scrollable
 
 # Display the selected page
 if selection == "Home":
@@ -29,9 +31,10 @@ elif selection == "Feedback":
 elif selection == "About":
     about_page()
 
-    # Load and display images
+# Load and display images
 image = Image.open("20058538_6197033.jpg")  # Replace with your image path
 st.image(image, caption="Welcome to the Stock Prediction App", use_column_width=True)
+
 # Optionally add custom CSS for scrolling
 st.markdown("""
     <style>
