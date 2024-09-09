@@ -387,7 +387,7 @@ def analyze_page():
         plot_hexbin_plots(data, selected_columns)
         plot_regression_pairs(data, selected_columns)
         plot_swarm_plots(data, selected_columns)
-        plot_ridge_plot(data, selected_columns)
+        plot_ridge_plot(data, selected_columns,category)
         plot_pair_grid(data, selected_columns)
         plot_lag_plot(data, selected_columns)
         plot_andrews_curves(data, selected_columns)
