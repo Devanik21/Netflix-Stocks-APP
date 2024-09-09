@@ -393,5 +393,6 @@ def analyze_page():
         plot_andrews_curves(data, selected_columns)
         
     else:
+        
     st.info("Select columns to generate visualizations.")
 
