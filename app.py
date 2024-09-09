@@ -7,6 +7,9 @@ from insights import insights_page
 from feedback import feedback_page
 from about import about_page
 from PIL import Image
+    # Load and display an image with enhanced styling
+image = Image.open("gold.jpg")  # Replace with your image path
+st.image(image, caption="📈 Data-Driven Insights for Netflix Stocks", use_column_width=True)
 
 # Custom CSS to style the app
 st.markdown("""
