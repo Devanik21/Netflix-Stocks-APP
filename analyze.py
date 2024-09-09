@@ -390,10 +390,8 @@ def analyze_page():
         plot_heatmaps(data, selected_columns)
         plot_hexbin_plots(data, selected_columns)
         plot_regression_pairs(data, selected_columns)
-        plot_ridge_plot(data, selected_columns, category)
-        plot_pair_grid(data, selected_columns)
-        plot_lag_plot(data, lag_column, lag=1)  # Example lag value
-        plot_andrews_curves(data, category)
+        plot_swarm_plots(data, columns)
+
     else:
         st.info("Select columns to generate visualizations.")
 
