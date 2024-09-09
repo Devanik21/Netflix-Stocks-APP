@@ -6,7 +6,9 @@ from visualize import visualize_page
 from insights import insights_page
 from feedback import feedback_page
 from about import about_page
-
+    # Load and display images
+image = Image.open("20058538_6197033.jpg")  # Replace with your image path
+st.image(image, caption="Welcome to the Stock Prediction App", use_column_width=True)
 # Sidebar for navigation
 st.sidebar.title("Navigation")
 pages = ["Home", "Predict", "Analyze", "Visualize", "Insights", "Feedback", "About"]
