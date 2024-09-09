@@ -292,6 +292,21 @@ def plot_swarm_plots(data, columns):
 
     st.pyplot(fig)
 
+def plot_ridge_plot(data, column, category):
+    st.write(f"Visualizing ridge plot for {column} by {category}.")
+    
+    # Ensure the category column is in the dataset
+    if category not in data.columns:
+        st.warning(f"Category column '{category}' not found in the dataset.")
+        return
+    
+    # Ridge plot uses a categorical variable to create overlapping density plots
+    plt.figure(figsize=(10, 6))
+    sns.kdeplot(data=data, x=column, hue=category, multiple='stack')
+    plt.title(f'Ridge Plot of {column} by {category}')
+    
+    st.pyplot()
+
 # Main analyze page function
 def analyze_page():
     st.title("Analyze Page")
