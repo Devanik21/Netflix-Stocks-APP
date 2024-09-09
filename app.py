@@ -2,17 +2,16 @@ import streamlit as st
 import pandas as pd
 import joblib
 from PIL import Image
-import os
 
 # Load the dataset
-df = pd.read_csv("NFLX.csv")
+df = pd.read_csv("/mnt/data/NFLX.csv")
 
 # Load the trained model (adjust the path to where your model is saved)
 model = joblib.load("Netflix Stocks ET.pkl")  # Replace with your actual model path
 
 # Sidebar for navigation
 st.sidebar.title("Navigation")
-pages = ["Predict", "Analyze", "Visualize", "Insights", "Feedback", "About"]
+pages = ["Home", "Predict", "Analyze", "Visualize", "Insights", "Feedback", "About"]
 selection = st.sidebar.radio("Go to", pages)
 
 # Function to handle user input for predictions
@@ -27,7 +26,22 @@ def user_input_features():
     return input_df
 
 # Display the selected page
-if selection == "Predict":
+if selection == "Home":
+    st.title("Welcome to the Netflix Stock Price Prediction App")
+    
+    # Welcome message
+    st.markdown("""
+    <div style="text-align: center;">
+        <h2>📊 Welcome! Predict Netflix Stock Prices with Ease!</h2>
+        <p>This app helps you forecast Netflix stock prices based on historical data. Use the navigation to explore various features of the app.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Load and display images
+    image = Image.open("welcome_image.jpg")  # Replace with your image path
+    st.image(image, caption="Welcome to the Stock Prediction App", use_column_width=True)
+
+elif selection == "Predict":
     st.title("Netflix Stock Price Prediction Web App")
     
     input_df = user_input_features()
