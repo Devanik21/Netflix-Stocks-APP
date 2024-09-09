@@ -79,7 +79,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Sidebar for navigation
-st.sidebar.title("🚀 Navigation")
+st.sidebar.title(" Navigation")
 
 # Use st.selectbox to create a scrollable dropdown menu for navigation
 pages = ["🏠 Home", "📈 Predict", "🔍 Analyze", "📊 Visualize", "💡 Insights", "📝 Feedback", "📚 About"]
