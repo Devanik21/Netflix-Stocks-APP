@@ -341,5 +341,6 @@ def analyze_page():
         plot_hexbin_plots(data, selected_columns)
         plot_regression_pairs(data, selected_columns)
         plot_swarm_plots(data, selected_columns)
+        plot_ridge_plot(data, column, category)
     else:
         st.info("Select columns to generate visualizations.")
