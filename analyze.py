@@ -243,7 +243,6 @@ def plot_heatmaps(data, columns):
 
     st.pyplot(fig)
 
-# Function to plot hexbin plots
 def plot_hexbin_plots(data, columns):
     if not columns or len(columns) < 2:
         st.warning("Please select at least two columns for visualization.")
@@ -251,11 +250,14 @@ def plot_hexbin_plots(data, columns):
 
     st.write(f"Visualizing hexbin plots for the selected columns: {', '.join(columns)}")
 
-    fig, axes = plt.subplots(figsize=(10, 8))
-    sns.hexbin(data[columns[0]], data[columns[1]], gridsize=50, cmap='inferno')
-    axes.set_title(f'Hexbin plot of {columns[0]} vs {columns[1]}')
+    fig, ax = plt.subplots(figsize=(10, 8))
+    hb = ax.hexbin(data[columns[0]], data[columns[1]], gridsize=50, cmap='inferno')
+    cb = plt.colorbar(hb, ax=ax)
+    cb.set_label('Count')
+    ax.set_title(f'Hexbin plot of {columns[0]} vs {columns[1]}')
 
     st.pyplot(fig)
+
 
 # Function to plot pairwise comparisons with regression
 def plot_regression_pairs(data, columns):
