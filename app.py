@@ -4,7 +4,7 @@ import joblib
 from PIL import Image
 
 # Load the dataset
-df = pd.read_csv("/mnt/data/NFLX.csv")
+df = pd.read_csv("NFLX.csv")
 
 # Load the trained model (adjust the path to where your model is saved)
 model = joblib.load("Netflix Stocks ET.pkl")  # Replace with your actual model path
