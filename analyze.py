@@ -371,6 +371,10 @@ def analyze_page():
     # Multi-select widget for column selection
     selected_columns = st.multiselect("Select columns to visualize", options=numeric_columns, default=numeric_columns[:2])
 
+    # Assuming 'category' and 'lag_column' are defined elsewhere or provided by user
+    category = st.selectbox("Select category column", options=[col for col in data.columns if data[col].dtype == 'object'])
+    lag_column = st.selectbox("Select column for lag plot", options=numeric_columns)
+
     if selected_columns:
         plot_pairwise(data, selected_columns)
         plot_histograms(data, selected_columns)
@@ -387,11 +391,11 @@ def analyze_page():
         plot_hexbin_plots(data, selected_columns)
         plot_regression_pairs(data, selected_columns)
         plot_swarm_plots(data, selected_columns)
-        plot_ridge_plot(data, selected_columns,category)
+        plot_ridge_plot(data, selected_columns, category)
         plot_pair_grid(data, selected_columns)
-        plot_lag_plot(data, selected_columns)
-        plot_andrews_curves(data, selected_columns)
-        
+        plot_lag_plot(data, lag_column, lag=1)  # Example lag value
+        plot_andrews_curves(data, category)
     else:
         st.info("Select columns to generate visualizations.")
+
 
