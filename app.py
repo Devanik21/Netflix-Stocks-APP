@@ -40,7 +40,8 @@ if selection == "Home":
     # Load and display images
     image = Image.open("20058538_6197033.jpg")  # Replace with your image path
     st.image(image, caption="Welcome to the Stock Prediction App", use_column_width=True)
-    st.sidebar.image('gold-bull-backgrounds-graphics-elements-related-financial-sector', caption="Welcome to the Stock Prediction App", use_column_width=True)
+    img2=Image.open("Gold.jpg")
+    st.sidebar.image(img2, caption="Welcome to the Stock Prediction App", use_column_width=True)
 elif selection == "Predict":
     st.title("Netflix Stock Price Prediction Web App")
     
