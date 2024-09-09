@@ -307,6 +307,52 @@ def plot_ridge_plot(data, column, category):
     
     st.pyplot()
 
+
+def plot_pair_grid(data, columns):
+    if not columns or len(columns) < 2:
+        st.warning("Please select at least two columns for visualization.")
+        return
+    
+    st.write(f"Visualizing pair grid for the selected columns: {', '.join(columns)}")
+    
+    g = sns.PairGrid(data[columns])
+    g.map_lower(sns.scatterplot)
+    g.map_diag(sns.histplot)
+    plt.suptitle('Pair Grid')
+    
+    st.pyplot()
+
+
+def plot_lag_plot(data, column, lag=1):
+    if column not in data.columns:
+        st.warning(f"Column '{column}' not found in the dataset.")
+        return
+    
+    st.write(f"Visualizing lag plot for {column} with a lag of {lag}.")
+    
+    from pandas.plotting import lag_plot
+    plt.figure(figsize=(10, 6))
+    lag_plot(data[column], lag=lag)
+    plt.title(f'Lag Plot of {column} with lag={lag}')
+    
+    st.pyplot()
+
+
+def plot_andrews_curves(data, category_column):
+    if category_column not in data.columns:
+        st.warning(f"Category column '{category_column}' not found in the dataset.")
+        return
+    
+    st.write(f"Visualizing Andrews curves for the category column: {category_column}.")
+    
+    plt.figure(figsize=(10, 6))
+    from pandas.plotting import andrews_curves
+    andrews_curves(data, category_column)
+    plt.title('Andrews Curves')
+    
+    st.pyplot()
+
+
 # Main analyze page function
 def analyze_page():
     st.title("Analyze Page")
@@ -341,6 +387,11 @@ def analyze_page():
         plot_hexbin_plots(data, selected_columns)
         plot_regression_pairs(data, selected_columns)
         plot_swarm_plots(data, selected_columns)
-        plot_ridge_plot(data, column, category)
+        plot_ridge_plot(data, selected_columns)
+        plot_pair_grid(data, selected_columns)
+        plot_lag_plot(data, selected_columns)
+        plot_andrews_curves(data, selected_columns)
+        
+        
     else:
         st.info("Select columns to generate visualizations.")
