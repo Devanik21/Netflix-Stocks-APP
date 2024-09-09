@@ -390,7 +390,7 @@ def analyze_page():
         plot_heatmaps(data, selected_columns)
         plot_hexbin_plots(data, selected_columns)
         plot_regression_pairs(data, selected_columns)
-        plot_swarm_plots(data, columns)
+        plot_swarm_plots(data, selected_columns)
 
     else:
         st.info("Select columns to generate visualizations.")
