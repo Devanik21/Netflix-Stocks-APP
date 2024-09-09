@@ -2,7 +2,6 @@ import streamlit as st
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Sample data loading function (replace with your actual data loading code)
 @st.cache_data
@@ -20,7 +19,7 @@ def plot_visualizations(data, columns):
     
     # Create a grid of subplots
     num_plots = len(columns)
-    fig, axes = plt.subplots(num_plots + 4, num_plots + 4, figsize=(20, 20))
+    fig, axes = plt.subplots(num_plots, num_plots, figsize=(20, 20))
     fig.tight_layout(pad=3.0)
 
     # Plot pairwise visualizations
@@ -28,37 +27,14 @@ def plot_visualizations(data, columns):
         for j, col2 in enumerate(columns):
             ax = axes[i, j]
             if col1 == col2:
-                sns.histplot(data[col1], kde=True, ax=ax, color=sns.color_palette("husl")[i % 8])
+                sns.histplot(data[col1], kde=True, ax=ax, color='blue')
                 ax.set_title(f'{col1} Distribution')
             else:
-                sns.scatterplot(data=data, x=col1, y=col2, ax=ax, color=sns.color_palette("husl")[i % 8])
+                sns.scatterplot(data=data, x=col1, y=col2, ax=ax, color='green')
                 ax.set_title(f'{col1} vs {col2}')
             ax.set_xlabel('')
             ax.set_ylabel('')
     
-    # Additional Plots
-    # Boxplots
-    for i, col in enumerate(columns):
-        sns.boxplot(data=data[col], ax=axes[num_plots + i, 0], color=sns.color_palette("husl")[i % 8])
-        axes[num_plots + i, 0].set_title(f'{col} Boxplot')
-
-    # Violin plots
-    for i, col in enumerate(columns):
-        sns.violinplot(data=data[col], ax=axes[num_plots + i, 1], color=sns.color_palette("husl")[i % 8])
-        axes[num_plots + i, 1].set_title(f'{col} Violin Plot')
-
-    # Heatmap of correlations
-    corr_matrix = data[columns].corr()
-    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', ax=axes[num_plots, 2], vmin=-1, vmax=1)
-    axes[num_plots, 2].set_title('Correlation Heatmap')
-
-    # Line plots (if the data has a time component)
-    if 'Date' in data.columns:
-        data['Date'] = pd.to_datetime(data['Date'])
-        for i, col in enumerate(columns):
-            sns.lineplot(data=data, x='Date', y=col, ax=axes[num_plots + 2, i], color=sns.color_palette("husl")[i % 8])
-            axes[num_plots + 2, i].set_title(f'{col} Over Time')
-
     st.pyplot(fig)
 
 def analyze_page():
