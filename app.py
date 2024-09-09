@@ -11,46 +11,67 @@ from PIL import Image
 # Custom CSS to style the app
 st.markdown("""
     <style>
-    /* Add background color */
+    /* Overall background color */
     .reportview-container {
         background-color: #F0F2F6;
     }
     
-    /* Style sidebar */
+    /* Sidebar styles */
     .sidebar .sidebar-content {
         background-color: #F4E5FF;
         color: #6A0DAD;
     }
     
-    /* Change the color of sidebar titles */
+    /* Sidebar titles color */
     .sidebar .sidebar-content h1 {
         color: #6A0DAD;
     }
 
-    /* Style for navigation selectbox */
+    /* Navigation selectbox styling */
     .stSelectbox > div:first-child {
         background-color: #D5A6E6;
         border-radius: 10px;
         padding: 10px;
     }
 
-    /* Style the main app title */
+    /* Main app title styling */
     .main h1 {
         color: #6A0DAD;
         font-size: 3em;
+        text-align: center;
     }
 
-    /* Style for images */
+    /* Image styling */
     .main img {
         border: 2px solid #6A0DAD;
         border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
     }
 
-    /* General padding and alignment adjustments */
+    /* Adjust padding and alignment */
     .main {
-        padding: 10px;
+        padding: 20px;
     }
 
+    /* Custom scrollbar */
+    .main::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .main::-webkit-scrollbar-thumb {
+        background: #6A0DAD;
+        border-radius: 10px;
+    }
+
+    .main::-webkit-scrollbar-track {
+        background: #F0F2F6;
+    }
+
+    /* Style for headers in main content */
+    .main h2, .main h3 {
+        color: #6A0DAD;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -86,7 +107,7 @@ st.markdown("""
     <style>
     .main {
         overflow-y: auto;
-        height: 100vh;
+        height: calc(100vh - 60px); /* Adjust height to fit the viewport */
     }
     </style>
     """, unsafe_allow_html=True)
