@@ -12,9 +12,6 @@ def home_page():
     </div>
     """, unsafe_allow_html=True)
     
-    # Load and display an image with enhanced styling
-    image = Image.open("path_to_your_image.jpg")  # Replace with your image path
-    st.image(image, caption="📈 Data-Driven Insights for Netflix Stocks", use_column_width=True)
 
     # Add a call-to-action or additional information
     st.markdown("""
