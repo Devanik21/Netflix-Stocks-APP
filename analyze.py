@@ -371,7 +371,7 @@ def analyze_page():
     # Multi-select widget for column selection
     selected_columns = st.multiselect("Select columns to visualize", options=numeric_columns, default=numeric_columns[:2])
 
- if selected_columns:
+    if selected_columns:
         plot_pairwise(data, selected_columns)
         plot_histograms(data, selected_columns)
         plot_boxplots(data, selected_columns)
@@ -392,6 +392,6 @@ def analyze_page():
         plot_lag_plot(data, selected_columns)
         plot_andrews_curves(data, selected_columns)
         
-else:
+   else:
     st.info("Select columns to generate visualizations.")
 
