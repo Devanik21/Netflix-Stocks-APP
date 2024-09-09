@@ -101,13 +101,21 @@ def plot_violin_plots(data, columns):
 # Function to plot correlation heatmap
 def plot_correlation_heatmap(data):
     st.write("Visualizing the correlation heatmap.")
+    
+    # Filter out non-numeric columns
+    numeric_data = data.select_dtypes(include='number')
+    
+    if numeric_data.empty:
+        st.warning("No numeric columns available to compute the correlation heatmap.")
+        return
 
-    corr = data.corr()
+    corr = numeric_data.corr()
     fig, ax = plt.subplots(figsize=(12, 10))
     sns.heatmap(corr, annot=True, cmap='coolwarm', ax=ax)
     ax.set_title('Correlation Heatmap')
 
     st.pyplot(fig)
+
 
 # Function to plot pair plots
 def plot_pair_plots(data, columns):
