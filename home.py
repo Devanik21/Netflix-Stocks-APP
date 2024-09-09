@@ -12,9 +12,7 @@ def home_page():
     </div>
     """, unsafe_allow_html=True)
 
-    # Load and display images
-    image = Image.open("20058538_6197033.jpg")  # Replace with your image path
-    st.image(image, caption="Welcome to the Stock Prediction App", use_column_width=True)
-    st.sidebar.image('gold-bull-backgrounds-graphics-elements-related-financial-sector', 
-                     caption="Welcome to the Stock Prediction App", 
-                     use_column_width=True)
+
+   # st.sidebar.image('gold-bull-backgrounds-graphics-elements-related-financial-sector', 
+                 #    caption="Welcome to the Stock Prediction App", 
+                #     use_column_width=True)
