@@ -38,8 +38,8 @@ if selection == "Home":
     """, unsafe_allow_html=True)
 
     # Load and display images
-    image = Image.open("welcome_image.jpg")  # Replace with your image path
-    st.image(image, caption="Welcome to the Stock Prediction App", use_column_width=True)
+    #image = Image.open("welcome_image.jpg")  # Replace with your image path
+    #st.image(image, caption="Welcome to the Stock Prediction App", use_column_width=True)
 
 elif selection == "Predict":
     st.title("Netflix Stock Price Prediction Web App")
