@@ -392,6 +392,6 @@ def analyze_page():
         plot_lag_plot(data, selected_columns)
         plot_andrews_curves(data, selected_columns)
         
-   else:
+    else:
     st.info("Select columns to generate visualizations.")
 
