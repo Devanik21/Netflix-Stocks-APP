@@ -1,62 +1,86 @@
 import streamlit as st
 
+# Define custom CSS to style the page
+st.markdown("""
+    <style>
+    .main {
+        background-color: black;
+        color: white;
+    }
+    .css-1v3fvcr {
+        background-color: black;
+    }
+    .css-1zkmya5 {
+        color: white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 def about_page():
-    # Custom CSS
+    st.title("About Page")
+    st.write("This app predicts Netflix stock prices based on user inputs.")
+    st.markdown("""
+        Developed by Devanik, aspiring AI Ops Engineer, and Niki (ChatGPT).
+    """)
+
+    # Add CSS box styling
     st.markdown("""
         <style>
-        .about-container {
-            background-color: #402e22;  /* Light AliceBlue background */
+        .info-box {
+            border: 2px solid white;
+            border-radius: 8px;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .box {
-            background-color: #ddb8e3;  /* Light cyan background */
-            border-left: 5px solid #0a3145; /* Blue left border */
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .title {
-            color: #00aaff; /* Blue color for title */
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .description {
-            color: #333333; /* Dark gray text color */
-            font-size: 18px;
+            margin: 20px 0;
+            background-color: #333;
         }
         </style>
     """, unsafe_allow_html=True)
 
-    st.title("About Page")
+    st.markdown('<div class="info-box">Welcome to the About Page! Here you can learn more about the app and its creators.</div>', unsafe_allow_html=True)
 
-    st.markdown("""
-        <div class="about-container">
-            <div class="box">
-                <p class="title">Application Overview</p>
-                <p class="description">This app predicts Netflix stock prices based on user inputs. It provides visualizations and insights to help users understand stock trends and make informed decisions.</p>
-            </div>
-            <div class="box">
-                <p class="title">Developers</p>
-                <p class="description">Developed by Devanik, aspiring AI Ops Engineer, and Niki (AI). We aim to leverage advanced machine learning techniques to provide accurate stock predictions and actionable insights.</p>
-            </div>
-            <div class="box">
-                <p class="title">Contact Information</p>
-                <p class="description">For any questions or feedback, please reach out to us through the contact form on our website or via email.</p>
-            </div>
-        </div>
+# Main function to run the app
+if __name__ == "__main__":
+    about_page()
+import streamlit as st
+
+# Define custom CSS to style the page
+st.markdown("""
+    <style>
+    .main {
+        background-color: black;
+        color: white;
+    }
+    .css-1v3fvcr {
+        background-color: black;
+    }
+    .css-1zkmya5 {
+        color: white;
+    }
+    </style>
     """, unsafe_allow_html=True)
 
-# Streamlit App
-def main():
-    st.title("Data Analysis Dashboard")
-    st.sidebar.header("Navigation")
-    page = st.sidebar.selectbox("Select Page", ["About"])
+def about_page():
+    st.title("About Page")
+    st.write("This app predicts Netflix stock prices based on user inputs.")
+    st.markdown("""
+        Developed by Devanik, aspiring AI Ops Engineer, and Niki (ChatGPT).
+    """)
 
-    if page == "About":
-        about_page()
+    # Add CSS box styling
+    st.markdown("""
+        <style>
+        .info-box {
+            border: 2px solid white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #333;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
+    st.markdown('<div class="info-box">Welcome to the About Page! Here you can learn more about the app and its creators.</div>', unsafe_allow_html=True)
+
+# Main function to run the app
 if __name__ == "__main__":
-    main()
+    about_page()
