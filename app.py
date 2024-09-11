@@ -11,6 +11,7 @@ from PIL import Image
 image = Image.open("gold.jpg")  # Replace with your image path
 st.sidebar.image(image, use_column_width=True)
 
+
 # Custom CSS to style the app
 st.markdown("""
     <style>
@@ -105,6 +106,9 @@ elif selection == "📚 About":
 image = Image.open("20058538_6197033.jpg")  # Replace with your image path
 st.image(image, caption="✨ Welcome to the Netflix Stock Prediction App! ✨", use_column_width=True)
 
+
+image = Image.open("20289170_6256878.jpg")  # Replace with your image path
+st.sidebar.image(image, use_column_width=True)
 # Optionally add custom CSS for scrolling
 st.markdown("""
     <style>
