@@ -1,86 +1,41 @@
 import streamlit as st
 
-# Define custom CSS to style the page
-st.markdown("""
-    <style>
-    .main {
-        background-color: black;
-        color: white;
-    }
-    .css-1v3fvcr {
-        background-color: black;
-    }
-    .css-1zkmya5 {
-        color: white;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
 def about_page():
-    st.title("About Page")
-    st.write("This app predicts Netflix stock prices based on user inputs.")
-    st.markdown("""
-        Developed by Devanik, aspiring AI Ops Engineer, and Niki (ChatGPT).
-    """)
-
-    # Add CSS box styling
+    st.set_page_config(page_title="About Page", page_icon=":star:", layout="wide")
+    
+    # Apply custom CSS
     st.markdown("""
         <style>
-        .info-box {
-            border: 2px solid white;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-            background-color: #333;
-        }
+            .main {
+                background-color: #000000;
+                color: #ffffff;
+            }
+            .container {
+                background-color: #2d2d2d;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .title {
+                color: #e0b3ff;
+                font-size: 36px;
+                font-weight: bold;
+            }
+            .subheader {
+                color: #b3a0ff;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            .text {
+                color: #ffffff;
+                font-size: 18px;
+            }
         </style>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div class="info-box">Welcome to the About Page! Here you can learn more about the app and its creators.</div>', unsafe_allow_html=True)
-
-# Main function to run the app
-if __name__ == "__main__":
-    about_page()
-import streamlit as st
-
-# Define custom CSS to style the page
-st.markdown("""
-    <style>
-    .main {
-        background-color: black;
-        color: white;
-    }
-    .css-1v3fvcr {
-        background-color: black;
-    }
-    .css-1zkmya5 {
-        color: white;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-def about_page():
-    st.title("About Page")
-    st.write("This app predicts Netflix stock prices based on user inputs.")
-    st.markdown("""
-        Developed by Devanik, aspiring AI Ops Engineer, and Niki (ChatGPT).
-    """)
-
-    # Add CSS box styling
-    st.markdown("""
-        <style>
-        .info-box {
-            border: 2px solid white;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-            background-color: #333;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<div class="info-box">Welcome to the About Page! Here you can learn more about the app and its creators.</div>', unsafe_allow_html=True)
-
-# Main function to run the app
-if __name__ == "__main__":
-    about_page()
+    # Create layout
+    st.markdown('<div class="container">', unsafe_allow_html=True)
+    st.markdown('<div class="title">About Page</div>', unsafe_allow_html=True)
+    st.markdown('<div class="text">This app predicts Netflix stock prices based on user inputs.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="text">Developed by Devanik, aspiring AI Ops Engineer, and Niki (ChatGPT).</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
