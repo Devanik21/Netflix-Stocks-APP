@@ -155,6 +155,150 @@ def plot_line_plots(data):
     st.pyplot(fig)
 
 # Main analyze page function
+def plot_histograms_kde(data, columns):
+    if not columns:
+        st.warning("Please select at least one column for histograms.")
+        return
+    
+    st.write(f"Visualizing histograms with KDE for the selected columns: {', '.join(columns)}")
+    
+    num_plots = len(columns)
+    fig, axes = plt.subplots(1, num_plots, figsize=(20, 5))
+    if num_plots == 1:
+        axes = [axes]
+
+    for ax, col in zip(axes, columns):
+        sns.histplot(data[col], kde=True, ax=ax, color='blue')
+        ax.set_title(f'{col} Histogram with KDE')
+        ax.set_xlabel('')
+        ax.set_ylabel('')
+
+    st.pyplot(fig)
+
+# Function to plot KDE plots
+def plot_kde_plots(data, columns):
+    if not columns:
+        st.warning("Please select at least one column for KDE plots.")
+        return
+
+    st.write(f"Visualizing KDE plots for the selected columns: {', '.join(columns)}")
+
+    num_plots = len(columns)
+    fig, axes = plt.subplots(1, num_plots, figsize=(20, 5))
+    if num_plots == 1:
+        axes = [axes]
+
+    for ax, col in zip(axes, columns):
+        sns.kdeplot(data[col], ax=ax, color='green')
+        ax.set_title(f'{col} KDE Plot')
+        ax.set_xlabel('')
+        ax.set_ylabel('')
+
+    st.pyplot(fig)
+
+# Function to plot scatter matrix
+def plot_scatter_matrix(data, columns):
+    if not columns or len(columns) < 2:
+        st.warning("Please select at least two columns for scatter matrix.")
+        return
+
+    st.write(f"Visualizing scatter matrix for the selected columns: {', '.join(columns)}")
+
+    scatter_data = data[columns]
+    fig = sns.pairplot(scatter_data, diag_kind='kde')
+    st.pyplot(fig)
+
+# Function to plot bar plots
+def plot_bar_plots(data, columns):
+    if not columns:
+        st.warning("Please select at least one column for bar plots.")
+        return
+
+    st.write(f"Visualizing bar plots for the selected columns: {', '.join(columns)}")
+
+    num_plots = len(columns)
+    fig, axes = plt.subplots(1, num_plots, figsize=(20, 5))
+    if num_plots == 1:
+        axes = [axes]
+
+    for ax, col in zip(axes, columns):
+        data[col].value_counts().plot(kind='bar', ax=ax, color='purple')
+        ax.set_title(f'{col} Bar Plot')
+        ax.set_xlabel('')
+        ax.set_ylabel('')
+
+    st.pyplot(fig)
+
+# Function to plot heatmaps
+def plot_heatmaps(data, columns):
+    if not columns:
+        st.warning("Please select at least one column for heatmaps.")
+        return
+
+    st.write(f"Visualizing heatmaps for the selected columns: {', '.join(columns)}")
+
+    num_plots = len(columns)
+    fig, axes = plt.subplots(1, num_plots, figsize=(20, 5))
+    if num_plots == 1:
+        axes = [axes]
+
+    for ax, col in zip(axes, columns):
+        matrix = pd.crosstab(data[col], data[col])
+        sns.heatmap(matrix, annot=True, cmap='coolwarm', ax=ax)
+        ax.set_title(f'{col} Heatmap')
+        ax.set_xlabel('')
+        ax.set_ylabel('')
+
+    st.pyplot(fig)
+
+# Function to plot hexbin plots
+def plot_hexbin_plots(data, columns):
+    if len(columns) != 2:
+        st.warning("Please select exactly two columns for hexbin plots.")
+        return
+
+    x_col, y_col = columns
+    st.write(f"Visualizing hexbin plot for {x_col} vs {y_col}")
+
+    fig, ax = plt.subplots(figsize=(10, 7))
+    hb = ax.hexbin(data[x_col], data[y_col], gridsize=30, cmap='Blues')
+    cb = fig.colorbar(hb, ax=ax)
+    ax.set_xlabel(x_col)
+    ax.set_ylabel(y_col)
+    ax.set_title(f'Hexbin Plot of {x_col} vs {y_col}')
+
+    st.pyplot(fig)
+
+# Function to plot regression pairs
+def plot_regression_pairs(data, columns):
+    if len(columns) < 2:
+        st.warning("Please select at least two columns for regression pairs.")
+        return
+
+    st.write(f"Visualizing regression pairs for the selected columns: {', '.join(columns)}")
+
+    reg_data = data[columns]
+    fig = sns.pairplot(reg_data, kind='reg')
+    st.pyplot(fig)
+
+# Function to plot swarm plots
+def plot_swarm_plots(data, columns):
+    if len(columns) != 2:
+        st.warning("Please select exactly two columns for swarm plots.")
+        return
+
+    x_col, y_col = columns
+    st.write(f"Visualizing swarm plot for {x_col} vs {y_col}")
+
+    fig, ax = plt.subplots(figsize=(10, 7))
+    sns.swarmplot(data=data, x=x_col, y=y_col, ax=ax, color='orange')
+    ax.set_xlabel(x_col)
+    ax.set_ylabel(y_col)
+    ax.set_title(f'Swarm Plot of {x_col} vs {y_col}')
+
+    st.pyplot(fig)
+
+# Main analyze page function
 def analyze_page():
     st.title("Analyze Page")
     st.write("This page contains various data visualizations.")
@@ -162,14 +306,18 @@ def analyze_page():
     # Load the data
     data = load_data()
 
-    # Display each plot function with a user-selectable column interface
-    plot_pairwise(data)
-    plot_histograms(data)
-    plot_boxplots(data)
-    plot_violin_plots(data)
-    plot_correlation_heatmap(data)
-    plot_pair_plots(data)
-    plot_line_plots(data)
+    # User selects columns for each type of plot
+    columns = st.multiselect("Select columns for plots", data.select_dtypes(include='number').columns)
+
+    # Display each plot function with user-selected columns
+    plot_histograms_kde(data, columns)
+    plot_kde_plots(data, columns)
+    plot_scatter_matrix(data, columns)
+    plot_bar_plots(data, columns)
+    plot_heatmaps(data, columns)
+    plot_hexbin_plots(data, columns)
+    plot_regression_pairs(data, columns)
+    plot_swarm_plots(data, columns)
 
 # Run the analyze page
 if __name__ == '__main__':
