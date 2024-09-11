@@ -99,11 +99,7 @@ def generate_visualizations(data):
     plt.clf()
 
     # 5. Histogram
-    st.subheader("Histogram")
-    hist_col = st.selectbox("Select column for Histogram", numeric_data.columns.tolist())
-    plt.hist(numeric_data[hist_col], bins=20, color='blue', alpha=0.7)
-    st.pyplot(plt)
-    plt.clf()
+
 
     # 6. KDE Plot
     st.subheader("KDE Plot")
