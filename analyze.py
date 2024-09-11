@@ -306,10 +306,14 @@ def analyze_page():
     # Load the data
     data = load_data()
 
-    # User selects columns for each type of plot
-    columns = st.multiselect("Select columns for plots", data.select_dtypes(include='number').columns)
-
-    # Display each plot function with user-selected columns
+    # Display each plot function with a user-selectable column interface
+    plot_pairwise(data)
+    plot_histograms(data)
+    plot_boxplots(data)
+    plot_violin_plots(data)
+    plot_correlation_heatmap(data)
+    plot_pair_plots(data)
+    plot_line_plots(data)
     plot_histograms_kde(data, columns)
     plot_kde_plots(data, columns)
     plot_scatter_matrix(data, columns)
