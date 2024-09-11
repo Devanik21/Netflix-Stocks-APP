@@ -30,14 +30,6 @@ def insights_page():
     st.pyplot(fig)
     plt.clf()
 
-    # Box Plot
-    st.subheader("Box Plot")
-    box_col = st.selectbox("Select column for Box Plot", numeric_data.columns.tolist())
-    st.write(f"Box Plot for {box_col}")
-    fig, ax = plt.subplots()
-    sns.boxplot(data[numeric_data[box_col]], ax=ax)
-    st.pyplot(fig)
-    plt.clf()
 
     # Correlation Heatmap
     st.subheader("Correlation Heatmap")
