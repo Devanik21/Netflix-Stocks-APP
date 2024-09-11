@@ -1,7 +1,7 @@
 import streamlit as st
 
 def about_page():
-    st.set_page_config(page_title="About Page", page_icon=":star:", layout="wide")
+
     
     # Apply custom CSS
     st.markdown("""
