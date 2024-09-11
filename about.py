@@ -12,7 +12,7 @@ def about_page():
         }
         .box {
             background-color: #ddb8e3;  /* Light cyan background */
-            border-left: 5px solid #00aaff; /* Blue left border */
+            border-left: 5px solid #0a3145; /* Blue left border */
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
