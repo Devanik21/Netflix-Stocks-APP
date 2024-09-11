@@ -89,13 +89,33 @@ def insights_page():
     # Additional Insights
     st.subheader("Additional Insights")
     st.write("Here you can add any additional insights or observations about the data based on the visualizations above.")
-    st.write("Consider highlighting key trends, patterns, or anomalies that can be useful for further analysis or decision-making.")
-
+    
+    # Insights on Distributions
+    st.write("### Distribution Insights")
+    st.write("Analyze the distribution of different columns to identify skewness or outliers. For instance, a highly skewed distribution may indicate the need for transformation or special handling.")
+    
+    # Trends and Patterns
+    st.write("### Trends and Patterns")
+    st.write("Identify trends and patterns from the line plots or pair plots. For example, a clear upward or downward trend in a line plot may indicate a growing or declining metric over time.")
+    
+    # Correlation Insights
+    st.write("### Correlation Insights")
+    st.write("Review the correlation heatmap to understand relationships between different numeric variables. High correlation between variables can indicate potential multicollinearity in models.")
+    
+    # Anomalies and Outliers
+    st.write("### Anomalies and Outliers")
+    st.write("Identify any anomalies or outliers from the box plots. Outliers can provide important insights or may indicate data quality issues that need to be addressed.")
+    
+    # Variable Relationships
+    st.write("### Variable Relationships")
+    st.write("Explore relationships between different variables using scatter plots and pair plots. These visualizations help in understanding how variables interact with each other.")
+    
+    # Summary Statistics
+    st.write("### Summary Statistics")
+    st.write("The basic statistics provided give a quick overview of the data's central tendencies, spread, and range. It’s useful for getting a general understanding of the dataset.")
+    
     # User Feedback
-    st.subheader("Feedback")
-    feedback = st.text_area("Share your feedback or suggestions for this insights page:")
-    if st.button("Submit Feedback"):
-        st.write("Thank you for your feedback!")
+
 
 # Streamlit App
 def main():
