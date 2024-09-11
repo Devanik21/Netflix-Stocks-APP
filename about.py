@@ -27,6 +27,18 @@ def about_page():
             color: #333333; /* Dark gray text color */
             font-size: 18px;
         }
+        .connect {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .connect a {
+            color: #00aaff; /* Blue color for links */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .connect a:hover {
+            text-decoration: underline;
+        }
         </style>
     """, unsafe_allow_html=True)
 
@@ -45,6 +57,9 @@ def about_page():
             <div class="box">
                 <p class="title">Contact Information</p>
                 <p class="description">For any questions or feedback, please reach out to us through the contact form on our website or via email.</p>
+            </div>
+            <div class="connect">
+                <p>Connect with me: <a href="https://www.linkedin.com/in/devanik/" target="_blank">Devanik</a></p>
             </div>
         </div>
     """, unsafe_allow_html=True)
