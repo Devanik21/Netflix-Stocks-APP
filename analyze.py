@@ -10,7 +10,8 @@ def load_data():
     return pd.read_csv('NFLX.csv')
 
 # Function to plot pairwise scatter and histograms
-def plot_pairwise(data, columns):
+def plot_pairwise(data):
+    columns = st.multiselect("Select columns for pairwise scatter plots", data.select_dtypes(include='number').columns)
     if not columns or len(columns) < 2:
         st.warning("Please select at least two columns for visualization.")
         return
@@ -36,7 +37,8 @@ def plot_pairwise(data, columns):
     st.pyplot(fig)
 
 # Function to plot histograms for selected columns
-def plot_histograms(data, columns):
+def plot_histograms(data):
+    columns = st.multiselect("Select columns for histograms", data.select_dtypes(include='number').columns)
     if not columns:
         st.warning("Please select at least one column for visualization.")
         return
@@ -57,7 +59,8 @@ def plot_histograms(data, columns):
     st.pyplot(fig)
 
 # Function to plot boxplots for selected columns
-def plot_boxplots(data, columns):
+def plot_boxplots(data):
+    columns = st.multiselect("Select columns for boxplots", data.select_dtypes(include='number').columns)
     if not columns:
         st.warning("Please select at least one column for visualization.")
         return
@@ -78,7 +81,8 @@ def plot_boxplots(data, columns):
     st.pyplot(fig)
 
 # Function to plot violin plots for selected columns
-def plot_violin_plots(data, columns):
+def plot_violin_plots(data):
+    columns = st.multiselect("Select columns for violin plots", data.select_dtypes(include='number').columns)
     if not columns:
         st.warning("Please select at least one column for visualization.")
         return
@@ -116,9 +120,9 @@ def plot_correlation_heatmap(data):
 
     st.pyplot(fig)
 
-
 # Function to plot pair plots
-def plot_pair_plots(data, columns):
+def plot_pair_plots(data):
+    columns = st.multiselect("Select columns for pair plots", data.select_dtypes(include='number').columns)
     if not columns:
         st.warning("Please select at least two columns for visualization.")
         return
@@ -130,9 +134,14 @@ def plot_pair_plots(data, columns):
     st.pyplot(fig)
 
 # Function to plot line plots (if 'Date' column is present)
-def plot_line_plots(data, columns):
+def plot_line_plots(data):
     if 'Date' not in data.columns:
         st.warning("No 'Date' column found in the dataset.")
+        return
+
+    columns = st.multiselect("Select columns for line plots", data.select_dtypes(include='number').columns)
+    if not columns:
+        st.warning("Please select at least one column for visualization.")
         return
 
     st.write(f"Visualizing line plots for the selected columns: {', '.join(columns)}")
@@ -145,214 +154,6 @@ def plot_line_plots(data, columns):
 
     st.pyplot(fig)
 
-# Function to plot histograms with KDE
-def plot_histograms_kde(data, columns):
-    if not columns:
-        st.warning("Please select at least one column for visualization.")
-        return
-
-    st.write(f"Visualizing histograms with KDE for the selected columns: {', '.join(columns)}")
-
-    num_plots = len(columns)
-    fig, axes = plt.subplots(1, num_plots, figsize=(20, 5))
-    if num_plots == 1:
-        axes = [axes]
-
-    for ax, col in zip(axes, columns):
-        sns.histplot(data[col], kde=True, ax=ax, color='blue')
-        ax.set_title(f'{col} Histogram with KDE')
-        ax.set_xlabel('')
-        ax.set_ylabel('')
-
-    st.pyplot(fig)
-
-# Function to plot KDE plots
-def plot_kde_plots(data, columns):
-    if not columns:
-        st.warning("Please select at least one column for visualization.")
-        return
-
-    st.write(f"Visualizing KDE plots for the selected columns: {', '.join(columns)}")
-
-    num_plots = len(columns)
-    fig, axes = plt.subplots(1, num_plots, figsize=(20, 5))
-    if num_plots == 1:
-        axes = [axes]
-
-    for ax, col in zip(axes, columns):
-        sns.kdeplot(data[col], ax=ax, color='red')
-        ax.set_title(f'{col} KDE Plot')
-        ax.set_xlabel('')
-        ax.set_ylabel('')
-
-    st.pyplot(fig)
-
-# Function to plot scatter matrix
-def plot_scatter_matrix(data, columns):
-    if not columns:
-        st.warning("Please select at least two columns for visualization.")
-        return
-
-    st.write(f"Visualizing scatter matrix for the selected columns: {', '.join(columns)}")
-
-    scatter_data = data[columns]
-    fig = sns.pairplot(scatter_data, hue=None)
-    st.pyplot(fig)
-
-# Function to plot bar plots
-def plot_bar_plots(data, columns):
-    if not columns:
-        st.warning("Please select at least one column for visualization.")
-        return
-
-    st.write(f"Visualizing bar plots for the selected columns: {', '.join(columns)}")
-
-    num_plots = len(columns)
-    fig, axes = plt.subplots(1, num_plots, figsize=(20, 5))
-    if num_plots == 1:
-        axes = [axes]
-
-    for ax, col in zip(axes, columns):
-        data[col].value_counts().plot(kind='bar', ax=ax, color='cyan')
-        ax.set_title(f'{col} Bar Plot')
-        ax.set_xlabel('')
-        ax.set_ylabel('')
-
-    st.pyplot(fig)
-
-# Function to plot heatmaps for numeric columns
-def plot_heatmaps(data, columns):
-    if not columns:
-        st.warning("Please select at least two columns for visualization.")
-        return
-
-    st.write(f"Visualizing heatmaps for the selected columns: {', '.join(columns)}")
-
-    fig, axes = plt.subplots(len(columns), len(columns), figsize=(20, 20))
-    for i, col1 in enumerate(columns):
-        for j, col2 in enumerate(columns):
-            ax = axes[i, j]
-            if col1 == col2:
-                sns.heatmap(data[[col1]].corr(), annot=True, cmap='viridis', ax=ax)
-                ax.set_title(f'{col1} Heatmap')
-            else:
-                sns.heatmap(data[[col1, col2]].corr(), annot=True, cmap='viridis', ax=ax)
-                ax.set_title(f'{col1} vs {col2}')
-            ax.set_xlabel('')
-            ax.set_ylabel('')
-
-    st.pyplot(fig)
-
-def plot_hexbin_plots(data, columns):
-    if not columns or len(columns) < 2:
-        st.warning("Please select at least two columns for visualization.")
-        return
-
-    st.write(f"Visualizing hexbin plots for the selected columns: {', '.join(columns)}")
-
-    fig, ax = plt.subplots(figsize=(10, 8))
-    hb = ax.hexbin(data[columns[0]], data[columns[1]], gridsize=50, cmap='inferno')
-    cb = plt.colorbar(hb, ax=ax)
-    cb.set_label('Count')
-    ax.set_title(f'Hexbin plot of {columns[0]} vs {columns[1]}')
-
-    st.pyplot(fig)
-
-
-# Function to plot pairwise comparisons with regression
-def plot_regression_pairs(data, columns):
-    if not columns or len(columns) < 2:
-        st.warning("Please select at least two columns for visualization.")
-        return
-
-    st.write(f"Visualizing pairwise regression for the selected columns: {', '.join(columns)}")
-
-    pair_data = data[columns]
-    fig = sns.pairplot(pair_data, kind='reg', diag_kind='kde')
-    st.pyplot(fig)
-
-# Function to plot swarm plots
-def plot_swarm_plots(data, columns):
-    if not columns:
-        st.warning("Please select at least one column for visualization.")
-        return
-
-    st.write(f"Visualizing swarm plots for the selected columns: {', '.join(columns)}")
-
-    num_plots = len(columns)
-    fig, axes = plt.subplots(1, num_plots, figsize=(20, 5))
-    if num_plots == 1:
-        axes = [axes]
-
-    for ax, col in zip(axes, columns):
-        sns.swarmplot(data[col], ax=ax, color='brown')
-        ax.set_title(f'{col} Swarm Plot')
-        ax.set_xlabel('')
-        ax.set_ylabel('')
-
-    st.pyplot(fig)
-
-def plot_ridge_plot(data, column, category):
-    st.write(f"Visualizing ridge plot for {column} by {category}.")
-    
-    # Ensure the category column is in the dataset
-    if category not in data.columns:
-        st.warning(f"Category column '{category}' not found in the dataset.")
-        return
-    
-    # Ridge plot uses a categorical variable to create overlapping density plots
-    plt.figure(figsize=(10, 6))
-    sns.kdeplot(data=data, x=column, hue=category, multiple='stack')
-    plt.title(f'Ridge Plot of {column} by {category}')
-    
-    st.pyplot()
-
-
-def plot_pair_grid(data, columns):
-    if not columns or len(columns) < 2:
-        st.warning("Please select at least two columns for visualization.")
-        return
-    
-    st.write(f"Visualizing pair grid for the selected columns: {', '.join(columns)}")
-    
-    g = sns.PairGrid(data[columns])
-    g.map_lower(sns.scatterplot)
-    g.map_diag(sns.histplot)
-    plt.suptitle('Pair Grid')
-    
-    st.pyplot()
-
-
-def plot_lag_plot(data, column, lag=1):
-    if column not in data.columns:
-        st.warning(f"Column '{column}' not found in the dataset.")
-        return
-    
-    st.write(f"Visualizing lag plot for {column} with a lag of {lag}.")
-    
-    from pandas.plotting import lag_plot
-    plt.figure(figsize=(10, 6))
-    lag_plot(data[column], lag=lag)
-    plt.title(f'Lag Plot of {column} with lag={lag}')
-    
-    st.pyplot()
-
-
-def plot_andrews_curves(data, category_column):
-    if category_column not in data.columns:
-        st.warning(f"Category column '{category_column}' not found in the dataset.")
-        return
-    
-    st.write(f"Visualizing Andrews curves for the category column: {category_column}.")
-    
-    plt.figure(figsize=(10, 6))
-    from pandas.plotting import andrews_curves
-    andrews_curves(data, category_column)
-    plt.title('Andrews Curves')
-    
-    st.pyplot()
-
-
 # Main analyze page function
 def analyze_page():
     st.title("Analyze Page")
@@ -361,38 +162,15 @@ def analyze_page():
     # Load the data
     data = load_data()
 
-    # List of numeric columns
-    numeric_columns = data.select_dtypes(include='number').columns.tolist()
+    # Display each plot function with a user-selectable column interface
+    plot_pairwise(data)
+    plot_histograms(data)
+    plot_boxplots(data)
+    plot_violin_plots(data)
+    plot_correlation_heatmap(data)
+    plot_pair_plots(data)
+    plot_line_plots(data)
 
-    if len(numeric_columns) < 2:
-        st.warning("Not enough numeric columns to visualize.")
-        return
-
-    # Multi-select widget for column selection
-    selected_columns = st.multiselect("Select columns to visualize", options=numeric_columns, default=numeric_columns[:2])
-
-    # Assuming 'category' and 'lag_column' are defined elsewhere or provided by user
-    category = st.selectbox("Select category column", options=[col for col in data.columns if data[col].dtype == 'object'])
-    lag_column = st.selectbox("Select column for lag plot", options=numeric_columns)
-
-    if selected_columns:
-        plot_pairwise(data, selected_columns)
-        plot_histograms(data, selected_columns)
-        plot_boxplots(data, selected_columns)
-        plot_violin_plots(data, selected_columns)
-        plot_correlation_heatmap(data)
-        plot_pair_plots(data, selected_columns)
-        plot_line_plots(data, selected_columns)
-        plot_histograms_kde(data, selected_columns)
-        plot_kde_plots(data, selected_columns)
-        plot_scatter_matrix(data, selected_columns)
-        plot_bar_plots(data, selected_columns)
-        plot_heatmaps(data, selected_columns)
-        plot_hexbin_plots(data, selected_columns)
-        plot_regression_pairs(data, selected_columns)
-        plot_swarm_plots(data, selected_columns)
-
-    else:
-        st.info("Select columns to generate visualizations.")
-
-
+# Run the analyze page
+if __name__ == '__main__':
+    analyze_page()
