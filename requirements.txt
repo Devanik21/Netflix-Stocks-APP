@@ -15,3 +15,5 @@ pytorch-lightning
 statsmodels
 plotly
 streamlit
+seaborn.bootstrap
+bootstrap
