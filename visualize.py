@@ -11,7 +11,7 @@ def load_data():
     return data
 
 # Function to generate visualizations
-def generate_visualizations(data):
+def visualize_page(data):
     # Ensure that only numeric columns are used where appropriate
     numeric_data = data.select_dtypes(include=[np.number])
 
