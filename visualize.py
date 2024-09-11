@@ -125,21 +125,10 @@ def generate_visualizations(data):
     plt.clf()
 
     # 9. Parallel Coordinates
-    st.subheader("Parallel Coordinates")
-    parallel_cols = st.multiselect("Select columns for Parallel Coordinates", numeric_data.columns.tolist(), default=numeric_data.columns[:3])
-    if len(parallel_cols) > 1:
-        parallel_coordinates(numeric_data[parallel_cols], parallel_cols[0])
-        st.pyplot(plt)
-        plt.clf()
+
 
     # 10. RadViz
-    st.subheader("RadViz")
-    radviz_cols = st.multiselect("Select columns for RadViz", numeric_data.columns.tolist(), default=numeric_data.columns[:3])
-    from pandas.plotting import radviz
-    if len(radviz_cols) > 1:
-        radviz(numeric_data[radviz_cols], radviz_cols[0])
-        st.pyplot(plt)
-        plt.clf()
+
 
     # 11. Strip Plot
     st.subheader("Strip Plot")
