@@ -128,3 +128,7 @@ def analyze_page():
     st.title("Data Analysis")
     data = load_data()
     visualize_page(data)
+
+# To run the Streamlit app, ensure this file is executed directly
+if __name__ == "__main__":
+    analyze_page()
