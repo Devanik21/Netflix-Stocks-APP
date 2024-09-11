@@ -9,7 +9,7 @@ def load_data():
     return data
 
 # Function to generate data analysis
-def visualize_page(data):
+def visualize_page():
     numeric_data = data.select_dtypes(include=['float64', 'int64'])
     
     st.subheader("Pairwise Plot")
