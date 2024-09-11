@@ -50,18 +50,6 @@ def generate_plots(numeric_data):
     st.pyplot(plt)
     plt.clf()
 
-# Andrews Curves with shortened legend
-    st.subheader("Andrews Curves")
-    if len(selected_andrews_cols) > 1:
-      plt.figure(figsize=(10, 6))
-    
-    # Display only a subset of dates for the legend
-      unique_dates = data['Date'].unique()[:5]  # Limit to first 5 unique dates
-      subset_data = numeric_data[selected_andrews_cols].join(data[data['Date'].isin(unique_dates)])
-    
-      andrews_curves(subset_data, 'Date')  # Plot with a shortened legend
-      st.pyplot(plt)
-      plt.clf()
 
 
 
