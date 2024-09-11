@@ -8,7 +8,7 @@ from pandas.plotting import andrews_curves
 # Load the dataset
 @st.cache_data
 def load_data():
-    data = pd.read_csv('/mnt/data/NFLX.csv')  # Adjust path as needed
+    data = pd.read_csv('NFLX.csv')  # Adjust path as needed
     return data
 
 # Analyze page function
