@@ -123,8 +123,17 @@ def generate_plots(numeric_data):
     # 9. Parallel Coordinates
     st.subheader("Parallel Coordinates")
     parallel_cols = st.multiselect("Select columns for Parallel Coordinates", numeric_data.columns.tolist(), default=numeric_data.columns[:3])
+    
     if len(parallel_cols) > 1:
-        parallel_coordinates(numeric_data[parallel_cols], parallel_cols[0])
+        plt.figure(figsize=(10, 6))
+
+        # Limit the number of unique categories for the legend
+        unique_values = numeric_data[parallel_cols[0]].unique()[:5]  # Limit to first 5 unique categories
+        filtered_data = numeric_data[numeric_data[parallel_cols[0]].isin(unique_values)]
+        
+        # Plot Parallel Coordinates with reduced legend
+        parallel_coordinates(filtered_data, parallel_cols[0])
+        plt.legend(loc="upper right", bbox_to_anchor=(1.15, 1), ncol=1)  # Adjust legend position if necessary
         st.pyplot(plt)
         plt.clf()
 
