@@ -8,8 +8,8 @@ def load_data():
     data = pd.read_csv('NFLX.csv')  # Modify path as necessary
     return data
 
-# Function to generate data analysis
-def visualize_page():
+# Function to generate data visualizations
+def visualize_page(data):
     numeric_data = data.select_dtypes(include=['float64', 'int64'])
     
     st.subheader("Pairwise Plot")
@@ -21,13 +21,13 @@ def visualize_page():
 
     st.subheader("Box Plot")
     box_col = st.selectbox("Select column for Box Plot", numeric_data.columns.tolist())
-    sns.boxplot(data[numeric_data[box_col]])
+    sns.boxplot(x=numeric_data[box_col])
     st.pyplot(plt)
     plt.clf()
 
     st.subheader("Violin Plot")
     violin_col = st.selectbox("Select column for Violin Plot", numeric_data.columns.tolist())
-    sns.violinplot(data[numeric_data[violin_col]])
+    sns.violinplot(x=numeric_data[violin_col])
     st.pyplot(plt)
     plt.clf()
 
@@ -127,4 +127,4 @@ def visualize_page():
 def analyze_page():
     st.title("Data Analysis")
     data = load_data()
-    generate_analysis(data)
+    visualize_page(data)
