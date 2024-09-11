@@ -7,7 +7,7 @@ import numpy as np
 # Load the dataset
 @st.cache_data
 def load_data():
-    data = pd.read_csv('/mnt/data/NFLX.csv')  # Change this to the correct path if needed
+    data = pd.read_csv('NFLX.csv')  # Change this to the correct path if needed
     return data
 
 # Function to display general statistics
