@@ -101,8 +101,8 @@ def generate_plots(numeric_data):
 
 
 
-     st.subheader("Andrews Curves")
-     if len(selected_andrews_cols) > 1:
+    st.subheader("Andrews Curves")
+    if len(selected_andrews_cols) > 1:
         # Limit the number of unique 'Date' categories in the legend
         unique_dates = data['Date'].unique()[:5]  # Limit to the first 5 unique dates
         filtered_data = numeric_data[selected_andrews_cols].join(data[data['Date'].isin(unique_dates)])
