@@ -99,6 +99,22 @@ def generate_plots(numeric_data):
     st.pyplot(plt)
     plt.clf()
 
+
+
+     st.subheader("Andrews Curves")
+     if len(selected_andrews_cols) > 1:
+        # Limit the number of unique 'Date' categories in the legend
+        unique_dates = data['Date'].unique()[:5]  # Limit to the first 5 unique dates
+        filtered_data = numeric_data[selected_andrews_cols].join(data[data['Date'].isin(unique_dates)])
+        
+        # Plot Andrews Curves with a shortened legend
+        plt.figure(figsize=(10, 6))
+        andrews_curves(filtered_data, 'Date')
+        plt.legend(loc="upper right", bbox_to_anchor=(1.15, 1), ncol=1)  # Adjust legend position if needed
+        st.pyplot(plt)
+        plt.clf()
+
+
     # 6. KDE Plot
     st.subheader("KDE Plot")
     kde_col = st.selectbox("Select column for KDE Plot", numeric_data.columns.tolist())
