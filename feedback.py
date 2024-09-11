@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-def main():
+def feedback_page():
     # Set the page layout and background color
    
     # Background color styling
