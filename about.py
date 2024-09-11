@@ -11,7 +11,7 @@ def about_page():
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .box {
-            background-color: #e6f9ff;  /* Light cyan background */
+            background-color: #4d2952;  /* Light cyan background */
             border-left: 5px solid #00aaff; /* Blue left border */
             padding: 10px;
             margin-bottom: 20px;
